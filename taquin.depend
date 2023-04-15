@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1681504930 source:d:\ensa\courss8\ai\taquin\taquin.cpp
+	"taquin.h"
+
+1681505154 d:\ensa\courss8\ai\taquin\taquin.h
+	<iostream>
+	<vector>
+	<algorithm>
+	<ctime>
+
+1681504930 d:\ensa\courss8\ai\taquin\taquin.cpp
+	"taquin.h"
+
+1681504918 source:d:\ensa\courss8\ai\taquin\main.cpp
+	<iostream>
+	"taquin.cpp"
+
