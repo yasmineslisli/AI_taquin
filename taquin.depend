@@ -2,16 +2,25 @@
 1681504930 source:d:\ensa\courss8\ai\taquin\taquin.cpp
 	"taquin.h"
 
-1681505154 d:\ensa\courss8\ai\taquin\taquin.h
+1681693186 d:\ensa\courss8\ai\taquin\taquin.h
 	<iostream>
 	<vector>
 	<algorithm>
 	<ctime>
+	"liste.h"
 
 1681504930 d:\ensa\courss8\ai\taquin\taquin.cpp
 	"taquin.h"
 
-1681504918 source:d:\ensa\courss8\ai\taquin\main.cpp
+1681693068 source:d:\ensa\courss8\ai\taquin\main.cpp
 	<iostream>
-	"taquin.cpp"
+	"taquin.h"
+
+1681644616 source:d:\ensa\courss8\ai\taquin\liste.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"liste.h"
+
+1681644591 d:\ensa\courss8\ai\taquin\liste.h
 
