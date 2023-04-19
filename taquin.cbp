@@ -32,6 +32,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="liste.cpp" />
+		<Unit filename="liste.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="taquin.cpp" />
 		<Unit filename="taquin.h" />

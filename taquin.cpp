@@ -146,21 +146,18 @@ void supprimerTete(Liste* liste) {
         liste->dernier = NULL;
     }
 }
-bool estDejaDansListe(Liste* liste, Taquin* etat) {
-    if (liste == NULL || etat == NULL) {
-        return false; // Vérification des cas d'erreur
-    }
-
+bool estDejaDansListe(Liste* liste, Taquin taquin) {
     Element* courant = liste->premier;
     while (courant != NULL) {
-        if (comparerEtats(courant->etat, etat)) {
-            return true; // Si l'état est trouvé dans la liste, retourner vrai
+        Taquin* t = (Taquin*) courant->reference;
+        if (comparerTaquins(*t, taquin)) {
+            return true;
         }
         courant = courant->suivant;
     }
-
-    return false; // Si l'état n'est pas trouvé dans la liste, retourner faux
+    return false;
 }
+
 
 
 Liste* parcoursAStar(Taquin &depart, Taquin &but) {
@@ -174,7 +171,7 @@ Liste* parcoursAStar(Taquin &depart, Taquin &but) {
     insererEnFinDeListe(ouverts, &depart);
 
     while (!listeVide(ouverts)) {
-        Taquin* courant = extraireEnTeteDeListe(ouverts);
+        Taquin* courant = (Taquin*) extraireEnTeteDeListe(ouverts);
         supprimerTete(ouverts);
         insererEnFinDeListe(fermes, courant);
 
@@ -195,7 +192,8 @@ Liste* parcoursAStar(Taquin &depart, Taquin &but) {
         Liste* successeur = successeurs;
 
         while (successeur != NULL) {
-            Taquin* s = (Taquin*)successeur->valeur;
+        Taquin* s = (Taquin*)(successeur->courant);
+
             int tentative_g = courant->g + 1; // Coût du déplacement = 1
 
             if (!estDejaDansListe(ouverts, *s) && !estDejaDansListe(fermes, *s)) {
@@ -210,15 +208,16 @@ Liste* parcoursAStar(Taquin &depart, Taquin &but) {
                 s->f = s->g + s->h;
 
                 if (estDejaDansListe(fermes, *s)) {
-                    extraireUnObjet(fermes, *s);
-                    insererEnFinDeListe(ouverts, s);
-                }
+                extraireUnObjet(fermes, s);
+                insererEnFinDeListe(ouverts, s);
             }
 
-            successeur = successeur->suivant;
+            }
+
+            successeur = (Liste*)successeur->courant->suivant;
         }
 
-        detruireListe(successeurs);
+        return successeur;
     }
 
     return NULL; // Aucune solution trouvée
@@ -234,7 +233,7 @@ void afficherCheminSolution(Liste* cheminSolution) {
 
     Liste* courant = cheminSolution;
     while (courant != NULL) {
-        switch (courant->mouvement) {
+        switch (courant->reference) {
             case HAUT:
                 cout << "H ";
                 break;
